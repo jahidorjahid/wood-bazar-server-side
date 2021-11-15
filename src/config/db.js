@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // DB connection
-const MONGODB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.q3lrf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const MONGODB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.q3lrf.mongodb.net/woobajar?retryWrites=true&w=majority`;
 mongoose
   .connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
