@@ -5,7 +5,7 @@ const MONGODB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}
 mongoose
   .connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    //don't show the log when it is test
+    //don't show the log when it is production
     if (process.env.NODE_ENV === "test") {
       console.log("Connected to %s", MONGODB_URL);
       console.log("App is running with index.js ... \n");

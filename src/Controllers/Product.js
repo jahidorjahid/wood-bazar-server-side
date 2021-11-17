@@ -9,7 +9,7 @@ const productController = {
       res.status(200).json({ message: "product available", data: result });
     } catch (error) {
       res
-        .status(500)
+        .status(200)
         .json({ message: "cant get all products", error: error.message });
     }
   },
