@@ -8,8 +8,6 @@ router.get("/", OrderController.all);
 // POST: store Order
 router.post("/", OrderController.store);
 // PUT: update Order by id
-router.put("/:id", OrderController.update);
-// DELETE: delete Order by id
-router.delete("/:id", OrderController.delete);
+router.put("/", OrderController.update);
 
 module.exports = router;

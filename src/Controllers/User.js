@@ -5,12 +5,34 @@ const UserController = {
   async all(req, res) {
     const project = { __v: 0 };
     try {
-      const result = await User.find({}, project).populate("orders");
+      const result = await User.find({}, project);
       res.status(200).json({ count: result.length, users: result });
     } catch (error) {
       res
         .status(500)
-        .json({ message: "cant get all users", error: error.message });
+        .json({
+          message: "there was an error on the server",
+          error: error.message,
+        });
+    }
+  },
+  //======= get all user ==========
+  async getAdmin(req, res) {
+    const email = req.params.email;
+    const query = { email: email };
+    try {
+      const result = await User.find(query);
+      const user = result[0];
+      let isAdmin = false;
+      if (user?.role === "admin") {
+        isAdmin = true;
+      }
+      res.status(200).json({ admin: isAdmin });
+    } catch (error) {
+      res.status(500).json({
+        message: "there was an error on the server",
+        error: error.message,
+      });
     }
   },
 
@@ -39,6 +61,24 @@ const UserController = {
     const updateDoc = { $set: user };
     try {
       const result = await User.updateOne(filter, updateDoc, options);
+      res
+        .status(200)
+        .json({ message: "user update successfully!", data: result });
+    } catch (error) {
+      res.status(500).json({
+        message: "there was a server side error",
+        error: error.message,
+      });
+    }
+  },
+
+  //======= update or create user ==========
+  async updateRole(req, res) {
+    const user = req.body;
+    const filter = { _id: user._id };
+    const updateDoc = { $set: { role: user.role } };
+    try {
+      const result = await User.updateOne(filter, updateDoc);
       res
         .status(200)
         .json({ message: "user update successfully!", data: result });
