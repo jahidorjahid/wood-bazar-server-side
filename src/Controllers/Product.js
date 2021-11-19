@@ -6,7 +6,7 @@ const productController = {
     const project = { __v: 0 };
     try {
       const result = await Product.find({}, project);
-      res.status(200).json({ message: "product available", data: result });
+      res.status(200).json({ message: "product available", products: result });
     } catch (error) {
       res
         .status(200)
@@ -22,7 +22,7 @@ const productController = {
     const project = { __v: 0 };
     try {
       const result = await Product.findOne(query, project);
-      res.status(200).json({ message: "product available", data: result });
+      res.status(200).json({ message: "product available", product: result });
     } catch (error) {
       res
         .status(500)

@@ -8,6 +8,7 @@ const OrderSchema = new Schema({
   customerCity: { type: String, required: true },
   status: { type: String, enum: ["pending", "shipped"], default: "pending" },
   createdAt: { type: Date, default: Date.now() },
+  user: { type: mongoose.Types.ObjectId, ref: "User" },
 });
 
 module.exports = mongoose.model("order", OrderSchema);

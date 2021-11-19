@@ -5,7 +5,7 @@ const UserController = {
   async all(req, res) {
     const project = { __v: 0 };
     try {
-      const result = await User.find({}, project);
+      const result = await User.find({}, project).populate("orders");
       res.status(200).json({ count: result.length, users: result });
     } catch (error) {
       res
