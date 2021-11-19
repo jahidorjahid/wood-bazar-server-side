@@ -9,5 +9,7 @@ router.get("/", OrderController.all);
 router.post("/", OrderController.store);
 // PUT: update Order by id
 router.put("/", OrderController.update);
+// get: order by email
+router.get("/:email", OrderController.singleByEmail);
 
 module.exports = router;

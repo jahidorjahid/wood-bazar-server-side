@@ -14,6 +14,19 @@ const OrderController = {
         .json({ message: "cant get all Orders", error: error.message });
     }
   },
+  //======= get  Order by email ==========
+  async singleByEmail(req, res) {
+    const query = { customerEmail: req.params.email };
+    const project = { __v: 0 };
+    try {
+      const result = await Order.find(query, project);
+      res.status(200).json({ count: result.length, orders: result });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "cant get all Orders", error: error.message });
+    }
+  },
 
   //======= store Order ==========
   async store(req, res) {
